@@ -2,11 +2,26 @@ const express = require('express');
 
 const app = express();
 
-const port = 3000;
+//Template Engine
+app.set('view engine', 'ejs');
 
+//Middlewares
+app.use(express.static('public'));
+
+//Routes
 app.get('/', (req, res) => {
-  res.status(200).send('<h1>XD</h1>');
+  res.render('index', {
+    page_name: 'index',
+  });
 });
+
+app.get('/about', (req, res) => {
+  res.render('about', {
+    page_name: 'about',
+  });
+});
+
+const port = 3000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
