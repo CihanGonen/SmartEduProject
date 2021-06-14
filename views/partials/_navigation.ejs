@@ -2,7 +2,7 @@
 <header class="top-navbar">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="/">
         <img src="images/logo.png" alt="" />
       </a>
       <button
@@ -34,8 +34,8 @@
             <a class="nav-link" href="/users/dashboard">Dashboard</a>
           </li>
           <% } %>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+          <li class="nav-item <%= page_name==='contact' && 'active' %>">
+            <a class="nav-link" href="/contact">Contact</a>
           </li>
         </ul>
         <% if(!userIN) { %>
