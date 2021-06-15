@@ -10,13 +10,12 @@ router.route('/signup').post(
   [
     body('name').not().isEmpty().withMessage('Please Enter Your Name'),
     body('email')
-      .not()
-      .isEmpty()
+      .isEmail()
       .withMessage('Please Enter a Valid Email')
       .custom((userEmail) => {
         return User.findOne({ email: userEmail }).then((user) => {
           if (user) {
-            return Promise.reject('Email is already exists');
+            return Promise.reject('Email already exists');
           }
         });
       }),
@@ -27,5 +26,6 @@ router.route('/signup').post(
 router.route('/login').post(authController.loginUser);
 router.route('/logout').get(authController.logoutUser);
 router.route('/dashboard').get(authMiddleware, authController.getDashboardPage);
+router.route('/:id').delete(authController.deleteUser);
 
 module.exports = router;
